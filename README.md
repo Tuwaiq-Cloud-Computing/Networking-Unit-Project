@@ -1,54 +1,36 @@
-# Networking-Project
+# Networking-Unit-Project
 
-1- Create VPC that can have 256 subnet and each subnet can have 256 IP and Name it (Lab-VPC) in Riyadh Region.
-
-2- Create 2 Vswitch in (Lab-VPC)  in Zone A and name first Vswitch (Public-VSwitch-A) and second Vswitch (Private-Vswitch-A).
-
-3- Repeat Task 2 , Create 2 Vswitch in (Lab-VPC) in Zone B and name first Vswitch (Public-VSwitch-B) and second Vswitch (Private-Vswitch-B).
-
-4-Create Security Group that has 2 rule and name it (SecGro) : <br/>
-rule 1 :allow| Protocol type (All ICMP IPv4) | Source (0.0.0.0/0). <br/>
-rule 2 : allow| Protocol type (Custom TCP) |Port range (SSH 22) | Source (0.0.0.0/0).<br/>
-
-5- Create ECS Instance inside (Private-Vswitch-A) with configuration and name it (Private-ECS): <br/>
-Billing Method: Pay-as-you-go . <br/>
-Region : Zone A . <br/>
-Instance Type : (General Purpose Type g6 ).<br/>
-Image : Public Image | ubuntu | 22.04 64bit .<br/>
-Clich Next at buttom .<br/>
-Network Type : Select Lab-VPC | (Private-Vswitch-A).<br/>
-Public IP Address : don't check Assign Public IPv4 Address.<br/>
-Security Group : Select SecGro.<br/>
-Clich Next at buttom .<br/>
-Logon Credentials : select Password | logon Username choose root| in logon password choose your password.<br/>
-Clich Next at buttom untill appear Create insance and click on it.<br/>
-
-6- Create ECS Instance inside (Public-Vswitch-B) with configuration and name it (Public-ECS): <br/>
-Billing Method: Pay-as-you-go .<br/>
-Region : Zone B . <br/>
-Instance Type : (General Purpose Type g6 ).<br/>
-Image : Public Image | ubuntu | 22.04 64bit <br/>
-Clich Next at buttom <br/>
-Network Type : Select Lab-VPC | (Public-Vswitch-B).<br/>
-Public IP Address :  check box Assign Public IPv4 Address.<br/>
-Security Group : Select SecGro.<br/>
-Clich Next at buttom .<br/>
-Logon Credentials : select Password | logon Username choose root| in logon password choose your password.<br/>
-Clich Next at buttom untill appear Create insance and click on it .<br/>
-
-7- Connect to Private-ECS through VNC .
-
-8- After login to Private_ECS :<br/>
-     -Enter: (ping alibabacloud.sa) command and take screnshot of output .<br/>
-     -Enter: (ping "PRIVATE IP OF Public-ECS") command and take screnshot of output. <br/>
- 
- 9- Connect to Public-ECS through VNC : <br/>
-     -Enter: (ping alibabacloud.sa) command and take screnshot of output. <br/>
-     -Enter: (ping "PRIVATE IP OF Private-ECS") command and take screnshot of output. <br/>
-     
-10- Create internet Nat Gateway to allow private instances to access internet : <br/>
-     -Enter: (ping alibabacloud.sa) command and take screnshot of output. <br/>
-     
+Create a Virtual Private Cloud (VPC) and Virtual Switch (VSwitch) in Alibaba Cloud is a fundamental step for building your network infrastructure. In this lab, you will go through the process of creating a VPC and VSwitch in Alibaba Cloud using the Alibaba Cloud Management Console.
 
 
+## Tasks:
 
+**Task 1: Create a VPC**
+
+Create a VPC name it (project-xyz) in Riyadh Region, make sure the IPv4 CIDR Block you choose can have only (256) subnet and each subnet can have (256) IP
+
+**Task 2: Create a VSwitch**
+
+A Virtual Switch (VSwitch) is a subnet within your VPC. You can create multiple VSwitches within a VPC to segment your network.
+
+1. Create a subnet in Zone A and name it (project-xyz-a)
+2. Create a subnet in Zone B and name it (project-xyz-b)
+
+**Task 3: Verify Your ECS VMs connection**
+
+After creating the 2 ECS Instances try to ping the other instance and ``` ping alibabacloud.sa ``` 
+
+1. Create an ECS in VSwitch project-xyz-a and name it (app-xyz-a1)
+2. Create an ECS in VSwitch project-xyz-b and name it (app-xyz-b1)
+
+**Task 4: Create an internet Nat Gateway to allow private instances to access the internet**
+
+After creating and configure the INGW try to this command ``` ping alibabacloud.sa ``` 
+
+1. Create an ECS in VSwitch project-xyz-a and name it (app-xyz-a1)
+2. Create an ECS in VSwitch project-xyz-b and name it (app-xyz-b1)
+
+## Submission:
+
+- After finishing the tasks take screen shot of newly create VPC basic information and VSwitchs details and the ping command responses.
+- Then upload the pictures to the forked repo and then create a pull request.
